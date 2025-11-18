@@ -8,7 +8,9 @@ function App() {
 
   return (
     <>
-      
+      <h1>
+      Havana Bistro
+      </h1>
     </>
   )
 }
