@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import DashboardLoader from '../../../DashboardLoader';
-import useWebSocket from '../../../../hooks/useWebSocket';
+
 
 import { AiFillFileExcel } from "react-icons/ai";
 import { CSVLink } from "react-csv";
@@ -32,8 +32,9 @@ const ListBooking = () => {
   const [productToDelete, setProductToDelete] = useState(null);
   const [allData, setAllData] = useState([]);
   
-  // WebSocket connection
-  const { lastMessage, readyState, sendMessage } = useWebSocket();
+  // WebSocket removed
+  const readyState = 0;
+  const sendMessage = () => {};
   // Detect mobile view
   const [isMobile, setIsMobile] = useState(() =>
     typeof window !== "undefined" ? window.innerWidth <= 600 : false
@@ -113,33 +114,7 @@ const ListBooking = () => {
     fetchUsers();
   }, [currentPage]);
 
-  // Handle WebSocket messages
-  useEffect(() => {
-    if (lastMessage) {
-      console.log('WebSocket message received:', lastMessage);
-      
-      switch (lastMessage.type) {
-        case 'BOOKING_CREATED':
-          toast.success('🎉 New booking created!');
-          fetchUsers();
-          break;
-        case 'BOOKING_UPDATED':
-          toast.success('✅ Booking updated!');
-          fetchUsers();
-          break;
-        case 'BOOKING_DELETED':
-          toast.success('🗑️ Booking deleted!');
-          fetchUsers();
-          break;
-        case 'BOOKING_STATUS_CHANGED':
-          toast.success(`📋 Booking status changed to ${lastMessage.data.status}`);
-          fetchUsers();
-          break;
-        default:
-          break;
-      }
-    }
-  }, [lastMessage]);
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -157,11 +132,7 @@ const ListBooking = () => {
         .then((res) => {
           console.log(res);
           if (res.data) {
-            // Send WebSocket message for real-time update
-            sendMessage({
-              type: 'BOOKING_DELETED',
-              data: { id }
-            });
+
             toast.success('Booking deleted successfully');
             fetchUsers();
           }
