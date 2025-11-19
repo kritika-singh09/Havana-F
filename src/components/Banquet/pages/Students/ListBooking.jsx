@@ -470,7 +470,7 @@ const ListBooking = () => {
               
               <div className="flex flex-col sm:flex-row gap-2">
                 <Link
-                  to={"/add-booking"}
+                  to={"/banquet/add-booking"}
                   className="inline-flex items-center gap-2 px-4 py-2 text-white rounded-lg shadow transition-colors font-semibold"
                   style={{backgroundColor: 'hsl(45, 43%, 58%)'}}
                 >
