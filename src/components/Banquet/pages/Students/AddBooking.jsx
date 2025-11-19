@@ -1748,7 +1748,7 @@ const AddBooking = () => {
       Object.assign(payload, statusBooleans);
 
       const response = await axios.post(
-        "https://ashoka-api.shineinfosolutions.in/api/banquet-bookings/create",
+        `${import.meta.env.VITE_API_BASE_URL}/api/banquet-bookings/create`,
         payload
       );
 

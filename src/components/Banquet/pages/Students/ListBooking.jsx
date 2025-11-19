@@ -52,7 +52,7 @@ const ListBooking = () => {
     try {
       axios
         .get(
-          `https://ashoka-api.shineinfosolutions.in/api/banquet-bookings/pg?page=${currentPage}`
+          `${import.meta.env.VITE_API_BASE_URL}/api/banquet-bookings/pg?page=${currentPage}`
         )
         .then((res) => {
           if (res.data) {
@@ -89,7 +89,7 @@ const ListBooking = () => {
   const fetchAllData = () => {
     try {
       axios
-        .get(`https://ashoka-api.shineinfosolutions.in/api/banquet-bookings`)
+        .get(`${import.meta.env.VITE_API_BASE_URL}/api/banquet-bookings`)
         .then((res) => {
           if (res.data) {
             console.log("All Data:", res.data);
@@ -128,7 +128,7 @@ const ListBooking = () => {
     setLoading(true);
     try {
       axios
-        .delete(`https://ashoka-api.shineinfosolutions.in/api/banquet-bookings/delete/${id}`)
+        .delete(`${import.meta.env.VITE_API_BASE_URL}/api/banquet-bookings/delete/${id}`)
         .then((res) => {
           console.log(res);
           if (res.data) {
@@ -297,7 +297,7 @@ const ListBooking = () => {
       try {
         axios
           .get(
-            `https://ashoka-api.shineinfosolutions.in//api/bookings/search?q=${searchQuery}`
+            `${import.meta.env.VITE_API_BASE_URL}/api/bookings/search?q=${searchQuery}`
           )
           .then((res) => {
             console.log(res);
