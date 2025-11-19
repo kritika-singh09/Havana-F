@@ -27,42 +27,42 @@ const MenuSelector = ({
 
   // API functions
   const fetchMenuItems = async () => {
-    const response = await axios.get('/api/menu-items');
+    const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/menu-items`);
     return response.data.success ? response.data.data : response.data;
   };
 
   const createMenuItem = async (itemData) => {
-    const response = await axios.post('/api/menu-items', itemData);
+    const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/menu-items`, itemData);
     return response.data;
   };
 
   const deleteMenuItem = async (itemId) => {
-    const response = await axios.delete(`/api/menu-items/${itemId}`);
+    const response = await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/menu-items/${itemId}`);
     return response.data;
   };
 
   const deleteMenuItems = async () => {
-    const response = await axios.delete('/api/menu-items');
+    const response = await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/menu-items`);
     return response.data;
   };
 
   const fetchCategories = async () => {
-    const response = await axios.get('/api/banquet-categories/all');
+    const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/banquet-categories/all`);
     return response.data;
   };
 
   const createCategory = async (categoryData) => {
-    const response = await axios.post('/api/banquet-categories/create', categoryData);
+    const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/banquet-categories/create`, categoryData);
     return response.data;
   };
 
   const fetchPlanLimits = async () => {
-    const response = await axios.get('/api/plan-limits/get');
+    const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/plan-limits/get`);
     return response.data;
   };
 
   const createPlanLimits = async (limitsData) => {
-    const response = await axios.post('/api/plan-limits', limitsData);
+    const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/plan-limits`, limitsData);
     return response.data;
   };
 
