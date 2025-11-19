@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import useWebSocket from '../../../../hooks/useWebSocket';
 import axios from "axios";
 import {
   FaUser,
@@ -76,8 +75,7 @@ const UpdateBooking = () => {
   const [loading, setLoading] = useState(false);
   const [menuLoading, setMenuLoading] = useState(false);
 
-  // WebSocket connection
-  const { sendMessage } = useWebSocket();
+
 
   // Staff edit limit logic (frontend) - define at component level so it's available in JSX
   const isStaffEditLimitReached =
