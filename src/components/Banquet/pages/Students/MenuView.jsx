@@ -2,9 +2,9 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useReactToPrint } from "react-to-print";
-import Logo from "/src/assets/logo.png";
+import Logo from "../../../../assets/hawana png11.png";
 import { useNavigate } from "react-router-dom";
-import WebSocketStatus from '../../components/WebSocketStatus';
+
 
 const MenuView = () => {
   const { id } = useParams();
@@ -106,7 +106,7 @@ const MenuView = () => {
         >
           ← Back
         </button>
-        <WebSocketStatus className="print:hidden" />
+
       </div>
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">

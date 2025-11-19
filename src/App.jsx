@@ -12,6 +12,8 @@ import ListBooking from './components/Banquet/pages/Students/ListBooking';
 import AddBooking from './components/Banquet/pages/Students/AddBooking';
 import UpdateBooking from './components/Banquet/pages/Students/UpdateBooking';
 import MenuPlanManager from './components/Banquet/components/MenuPlanManager';
+import Invoice from './components/Banquet/pages/Students/Invoice';
+import MenuView from './components/Banquet/pages/Students/MenuView';
 import './App.css'
 
 function App() {
@@ -41,6 +43,8 @@ function App() {
             <Route path="banquet/update-booking/:id" element={<UpdateBooking />} />
             <Route path="banquet/list-booking" element={<ListBooking />} />
             <Route path="banquet/menu-plan-manager" element={<MenuPlanManager />} />
+            <Route path="banquet/invoice/:id" element={<Invoice />} />
+            <Route path="banquet/menu-view/:id" element={<MenuView />} />
             
             {/* Users Routes */}
             <Route path="users" element={<Users />} />

@@ -2,8 +2,8 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useReactToPrint } from "react-to-print";
-import Logo from "../../../../assets/logo.png";
-import WaterMark from "../../../../assets/WaterMark.png";
+import Logo from "../../../../assets/hawana png11.png";
+// import WaterMark from "../../../../assets/WaterMark.png";
 import { useNavigate } from "react-router-dom";
 
 const Invoice = () => {
@@ -38,7 +38,7 @@ const Invoice = () => {
           left: 0 !important;
           right: 0 !important;
           bottom: 0 !important;
-          background-image: url('${WaterMark}') !important;
+          background-image: none !important;
           background-size: 80% !important;
           background-position: center !important;
           background-repeat: no-repeat !important;
@@ -174,7 +174,7 @@ const Invoice = () => {
           ref={printRef}
           className="watermark-container bg-white shadow-lg rounded-lg overflow-hidden print:shadow-none print:rounded-none print:max-w-none print:m-0 print:p-4 print:text-xs print:leading-tight relative"
           style={{
-            backgroundImage: `url(${WaterMark})`,
+            backgroundImage: 'none',
             backgroundSize: '80%',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat'
