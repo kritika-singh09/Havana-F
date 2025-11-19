@@ -14,7 +14,7 @@ const ChefPDFPreview = ({ booking, className }) => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.get(
-        `https://ashoka-api.shineinfosolutions.in/api/banquet-menus/${booking._id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/banquet-menus/${booking._id}`,
         {
           headers: { Authorization: `Bearer ${token}` }
         }

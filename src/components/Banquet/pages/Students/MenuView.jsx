@@ -34,7 +34,7 @@ const MenuView = () => {
         // Try to fetch menu first
         try {
           const res = await axios.get(
-            `https://ashoka-api.shineinfosolutions.in/api/banquet-menus/${id}`,
+            `${import.meta.env.VITE_API_BASE_URL}/api/banquet-menus/${id}`,
             {
               headers: { Authorization: `Bearer ${token}` }
             }
@@ -48,7 +48,7 @@ const MenuView = () => {
         
         // Fallback: try to get menu from booking data
         const bookingRes = await axios.get(
-          `https://ashoka-api.shineinfosolutions.in/api/banquet-bookings/get/${id}`,
+          `${import.meta.env.VITE_API_BASE_URL}/api/banquet-bookings/get/${id}`,
           {
             headers: { Authorization: `Bearer ${token}` }
           }

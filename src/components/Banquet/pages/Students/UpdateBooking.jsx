@@ -96,6 +96,10 @@ const UpdateBooking = () => {
         basePrice: 1899,
         taxPercent: 18,
       },
+      "Premium Package": {
+        basePrice: 2500,
+        taxPercent: 18,
+      },
     },
     "Non-Veg": {
       Silver: {
@@ -108,6 +112,10 @@ const UpdateBooking = () => {
       },
       Platinum: {
         basePrice: 2299,
+        taxPercent: 18,
+      },
+      "Premium Package": {
+        basePrice: 3000,
         taxPercent: 18,
       },
     },
@@ -226,12 +234,12 @@ const UpdateBooking = () => {
   const fetchBookingDetail = async () => {
     try {
       // Fetch booking data
-      const bookingResponse = await axios.get(`https://ashoka-api.shineinfosolutions.in/api/banquet-bookings/get/${id}`);
+      const bookingResponse = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/banquet-bookings/get/${id}`);
       
       // Fetch associated menu data
       let categorizedMenu = null;
       try {
-        const menuResponse = await axios.get(`https://ashoka-api.shineinfosolutions.in/api/banquet-menus/${id}`);
+        const menuResponse = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/banquet-menus/${id}`);
         const rawMenuData = menuResponse.data?.data || menuResponse.data || null;
         categorizedMenu = rawMenuData?.categories || rawMenuData || null;
       } catch (menuErr) {
@@ -491,6 +499,7 @@ const UpdateBooking = () => {
   // --- Rate Plan Summary UI Helper ---
   const getCurrentRateInfo = () => {
     if (!booking.ratePlan || !booking.foodType) return null;
+    if (!RATE_CONFIG[booking.foodType] || !RATE_CONFIG[booking.foodType][booking.ratePlan]) return null;
     return RATE_CONFIG[booking.foodType][booking.ratePlan];
   };
   const currentRate = getCurrentRateInfo();
@@ -530,7 +539,7 @@ const UpdateBooking = () => {
     if (role !== "Admin") {
       // Get original menu from server to compare
       axios
-        .get(`https://ashoka-api.shineinfosolutions.in/api/banquet-bookings/get/${id}`)
+        .get(`${import.meta.env.VITE_API_BASE_URL}/api/banquet-bookings/get/${id}`)
         .then((res) => {
           const originalMenu = res.data.categorizedMenu;
           const isMenuChanged =
@@ -613,7 +622,7 @@ const UpdateBooking = () => {
 
 
     axios
-      .put(`https://ashoka-api.shineinfosolutions.in/api/banquet-bookings/update/${id}`, payload)
+      .put(`${import.meta.env.VITE_API_BASE_URL}/api/banquet-bookings/update/${id}`, payload)
       .then((res) => {
         if (res.data) {
           // Send WebSocket notification for real-time update
@@ -1043,6 +1052,7 @@ const UpdateBooking = () => {
                   <option value="Silver">Silver</option>
                   <option value="Gold">Gold</option>
                   <option value="Platinum">Platinum</option>
+                  <option value="Premium Package">Premium Package</option>
                 </select>
               </div>
 

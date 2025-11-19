@@ -73,7 +73,7 @@ const Invoice = () => {
     const fetchBooking = async () => {
       try {
         // Fetch booking data
-        const bookingRes = await axios.get(`https://ashoka-api.shineinfosolutions.in/api/banquet-bookings/get/${id}`);
+        const bookingRes = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/banquet-bookings/get/${id}`);
         console.log('Booking API Response:', bookingRes.data);
         if (bookingRes.data.error) {
           throw new Error(bookingRes.data.error);
@@ -84,7 +84,7 @@ const Invoice = () => {
         // Fetch menu data
         let categorizedMenu = null;
         try {
-          const menuRes = await axios.get(`https://ashoka-api.shineinfosolutions.in/api/banquet-menus/${id}`);
+          const menuRes = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/banquet-menus/${id}`);
           console.log('Menu API Response:', menuRes.data);
           const rawMenuData = menuRes.data?.data || menuRes.data || null;
           categorizedMenu = rawMenuData?.categories || rawMenuData || null;
