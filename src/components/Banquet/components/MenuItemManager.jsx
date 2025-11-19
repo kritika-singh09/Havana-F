@@ -57,7 +57,7 @@ const MenuItemManager = () => {
           setEditingItem(null);
         }
       } else {
-        const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/menu-items`, form);
+        const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/menu-items/create`, form);
         if (response.data.success) {
           toast.success('Menu item added successfully');
         }
