@@ -285,11 +285,27 @@ const Sidebar = () => {
     // Dashboard
     { icon: LayoutDashboard, label: "Dashboard", path: "/dashboard" },
     
+    // Easy Dashboard
+    { icon: ChartBarStacked, label: "Easy Dashboard", path: "/easy-dashboard" },
+    
     // Booking
     {
       icon: Book,
       label: "Booking",
       path: "/booking",
+    },
+    
+    // Room Management
+    {
+      icon: BedDouble,
+      label: "Room Management",
+      path: "/rooms",
+      isDropdown: true,
+      children: [
+        { label: "Room List", path: "/rooms", icon: BedDouble },
+        { label: "Room Categories", path: "/room-categories", icon: Settings },
+        { label: "Room Status", path: "/room-status", icon: BarChart2 },
+      ],
     },
     
     // Inventory
