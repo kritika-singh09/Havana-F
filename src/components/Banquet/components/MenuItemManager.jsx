@@ -78,9 +78,9 @@ const MenuItemManager = () => {
       if (item.category.length === 24 && /^[0-9a-fA-F]{24}$/.test(item.category)) {
         categoryId = item.category;
       } else {
-        const matchingCategory = categories.find(cat => 
+        const matchingCategory = Array.isArray(categories) ? categories.find(cat => 
           cat.cateName?.toLowerCase() === item.category.toLowerCase()
-        );
+        ) : null;
         categoryId = matchingCategory?._id || '';
       }
     } else if (item.category?._id) {
@@ -92,9 +92,9 @@ const MenuItemManager = () => {
     if (!categoryId) {
       const displayedCategory = typeof item.category === 'string' ? item.category : 
         item.category?.cateName || item.category?.name || '';
-      const matchingCategory = categories.find(cat => 
+      const matchingCategory = Array.isArray(categories) ? categories.find(cat => 
         cat.cateName?.toLowerCase() === displayedCategory.toLowerCase()
-      );
+      ) : null;
       categoryId = matchingCategory?._id || '';
     }
     
@@ -147,9 +147,9 @@ const MenuItemManager = () => {
               required
             >
               <option value="">Select Category</option>
-              {categories.filter(cat => cat.status === 'active').map(cat => (
+              {Array.isArray(categories) ? categories.filter(cat => cat.status === 'active').map(cat => (
                 <option key={cat._id} value={cat._id}>{cat.cateName}</option>
-              ))}
+              )) : []}
             </select>
             <select
               value={form.foodType}

@@ -10,6 +10,7 @@ import Users from './components/Users/Users';
 import LaganCalendar from './components/Banquet/pages/Calendar/LaganCalendar';
 import ListBooking from './components/Banquet/pages/Students/ListBooking';
 import AddBooking from './components/Banquet/pages/Students/AddBooking';
+import MenuPlanManager from './components/Banquet/components/MenuPlanManager';
 import './App.css'
 
 function App() {
@@ -37,7 +38,7 @@ function App() {
             <Route path="banquet/calendar" element={<LaganCalendar />} />
             <Route path="banquet/add-booking" element={<AddBooking />} />
             <Route path="banquet/list-booking" element={<ListBooking />} />
-            <Route path="banquet/menu-plan-manager" element={<div>Menu Plan Manager</div>} />
+            <Route path="banquet/menu-plan-manager" element={<MenuPlanManager />} />
             
             {/* Users Routes */}
             <Route path="users" element={<Users />} />
