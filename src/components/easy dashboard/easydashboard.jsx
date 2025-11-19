@@ -5,7 +5,7 @@ import { Home, Bed, AlertTriangle, Clock, CalendarCheck, DoorOpen, DollarSign, U
 import DashboardLoader from '../DashboardLoader';
 
 // --- Configuration ---
-const BACKEND_URL = 'https://ashoka-api.shineinfosolutions.in';
+const BACKEND_URL = import.meta.env.VITE_API_BASE_URL;
 const TODAY = new Date().toDateString();
 
 // --- Utility: Fetch with Exponential Backoff ---
