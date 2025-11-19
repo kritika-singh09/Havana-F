@@ -1,7 +1,6 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { useAppContext } from "../../../../context/AppContext";
-import useWebSocket from "../../../../hooks/useWebSocket";
 const MenuSelector = ({
   onSave,
   onSaveCategory,
@@ -23,30 +22,8 @@ const MenuSelector = ({
   const [newCategoryName, setNewCategoryName] = useState("");
   const [showAddCategory, setShowAddCategory] = useState(false);
 
-  // WebSocket connection for real-time updates
-  const { lastMessage, sendMessage } = useWebSocket();
-
-  // Handle real-time menu updates
-  useEffect(() => {
-    if (lastMessage) {
-      switch (lastMessage.type) {
-        case 'MENU_ITEM_CREATED':
-        case 'MENU_ITEM_UPDATED':
-        case 'MENU_ITEM_DELETED':
-          // Refresh menu items when any menu changes
-          fetchMenuItems().then(setMenuItems);
-          break;
-        case 'CATEGORY_CREATED':
-        case 'CATEGORY_UPDATED':
-        case 'CATEGORY_DELETED':
-          // Refresh categories when any category changes
-          fetchCategories().then(setCategories);
-          break;
-        default:
-          break;
-      }
-    }
-  }, [lastMessage]);
+  // WebSocket removed
+  const sendMessage = () => {};
 
   // API functions
   const fetchMenuItems = async () => {
@@ -347,11 +324,7 @@ const MenuSelector = ({
       setNewCategoryName("");
       setShowAddCategory(false);
       
-      // Send WebSocket notification
-      sendMessage({
-        type: 'CATEGORY_CREATED',
-        data: { name: newCategoryName }
-      });
+      // WebSocket notification removed
     } catch (error) {
       console.error('Error adding category:', error);
     }
@@ -366,11 +339,7 @@ const MenuSelector = ({
         setMenuItems(updatedItems);
         setSelectedItems(prev => prev.filter(i => i !== itemName));
         
-        // Send WebSocket notification
-        sendMessage({
-          type: 'MENU_ITEM_DELETED',
-          data: { name: itemName, id: item.id }
-        });
+        // WebSocket notification removed
       }
     } catch (error) {
       console.error('Error deleting menu item:', error);

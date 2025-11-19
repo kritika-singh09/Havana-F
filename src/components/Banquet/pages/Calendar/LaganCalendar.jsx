@@ -8,8 +8,7 @@ import {
 } from "react-icons/fa";
 import { useAppContext } from '../../../../context/AppContext';
 import DashboardLoader from '../../../DashboardLoader';
-import useWebSocket from '../../../../hooks/useWebSocket';
-import WebSocketStatus from '../../components/WebSocketStatus';
+import BookingCalendar from '../../../BookingCalendar';
 
 function LaganCalendar() {
   const { axios } = useAppContext();
@@ -41,6 +40,7 @@ function LaganCalendar() {
     notes: "",
   });
   const [bookings, setBookings] = useState({});
+  const [showBookingCalendar, setShowBookingCalendar] = useState(false);
   const calendarRef = useRef(null);
   const [selectedRange, setSelectedRange] = useState({
     start: null,
@@ -74,6 +74,10 @@ function LaganCalendar() {
     } else {
       alert("Please select a date first.");
     }
+  };
+
+  const handleViewBookingCalendar = () => {
+    setShowBookingCalendar(true);
   };
 
   const format = (y, m, d) =>
@@ -394,24 +398,7 @@ function LaganCalendar() {
   const [searchResults, setSearchResults] = useState(null); // null = no search, [] = no results
   const [searchLoading, setSearchLoading] = useState(false);
 
-  // WebSocket connection for real-time updates
-  const { lastMessage } = useWebSocket();
 
-  // Handle real-time booking updates
-  useEffect(() => {
-    if (lastMessage) {
-      switch (lastMessage.type) {
-        case 'BOOKING_CREATED':
-        case 'BOOKING_UPDATED':
-        case 'BOOKING_DELETED':
-          // Refresh bookings when any booking changes
-          fetchBookings();
-          break;
-        default:
-          break;
-      }
-    }
-  }, [lastMessage]);
 
   // Extract fetchBookings function to be reusable
   const fetchBookings = async () => {
@@ -476,7 +463,6 @@ function LaganCalendar() {
               <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-amber-100 to-yellow-100 font-semibold text-sm shadow" style={{ color: '#5D4037' }}>
                 {userRole === "Admin" ? "👑 Admin" : "👤 Staff"}
               </span>
-              <WebSocketStatus />
             </div>
           )}
         </div>
@@ -527,24 +513,34 @@ function LaganCalendar() {
         </table>
       </div>
 
-      <Link
-        to="/banquet/add-booking"
-        state={{ selectedDate }}
-        className="text-[#c3ad6b] hover:underline mt-4 inline-block"
-      >
-        <button
-          className={`py-3 px-12 mt-6 rounded-xl text-lg font-bold shadow-lg transition-all duration-200 transform ${
-            selectedDate
-              ? "hover:scale-105 hover:shadow-xl text-white"
-              : "bg-gray-300 cursor-not-allowed"
-          }`}
-          style={selectedDate ? { background: 'linear-gradient(to right, #5D4037, #FFB300)' } : {}}
-          disabled={!selectedDate}
-          onClick={handleBooking}
+      <div className="flex flex-col md:flex-row gap-4 items-center justify-center mt-6">
+        <Link
+          to="/banquet/add-booking"
+          state={{ selectedDate }}
+          className="text-[#c3ad6b] hover:underline"
         >
-          Book Now
+          <button
+            className={`py-3 px-12 rounded-xl text-lg font-bold shadow-lg transition-all duration-200 transform ${
+              selectedDate
+                ? "hover:scale-105 hover:shadow-xl text-white"
+                : "bg-gray-300 cursor-not-allowed"
+            }`}
+            style={selectedDate ? { background: 'linear-gradient(to right, #5D4037, #FFB300)' } : {}}
+            disabled={!selectedDate}
+            onClick={handleBooking}
+          >
+            Book Now
+          </button>
+        </Link>
+        
+        <button
+          onClick={handleViewBookingCalendar}
+          className="py-3 px-8 rounded-xl text-lg font-bold shadow-lg transition-all duration-200 transform hover:scale-105 hover:shadow-xl text-white"
+          style={{ background: 'linear-gradient(to right, #FFB300, #FF8F00)' }}
+        >
+          View Booking Calendar
         </button>
-      </Link>
+      </div>
       {/* Booking list for selected date with status filter */}
       <div className="mt-10 max-w-3xl mx-auto">
         <h3 className="text-xl font-bold text-gray-800 mb-6">
@@ -697,6 +693,13 @@ function LaganCalendar() {
           </div>
         )}
       </div>
+      
+      {/* BookingCalendar Modal */}
+      <BookingCalendar 
+        isOpen={showBookingCalendar} 
+        onClose={() => setShowBookingCalendar(false)}
+        bookingData={bookings}
+      />
     </div>
   );
 }

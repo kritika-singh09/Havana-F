@@ -3,9 +3,13 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { AppProvider } from './context/AppContext';
 import Layout from './components/Layout';
 import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
-import ListBooking from './components/Banquet/pages/Students/ListBooking';
+import Dashboard from './components/Dashboard';
+import Booking from './components/booking/Booking';
+import BookingForm from './components/booking/BookingForm';
 import Users from './components/Users/Users';
+import LaganCalendar from './components/Banquet/pages/Calendar/LaganCalendar';
+import ListBooking from './components/Banquet/pages/Students/ListBooking';
+import AddBooking from './components/Banquet/pages/Students/AddBooking';
 import './App.css'
 
 function App() {
@@ -22,14 +26,16 @@ function App() {
             <Route path="dashboard" element={<Dashboard />} />
             
             {/* Booking Routes */}
-            <Route path="booking" element={<div>Booking Component</div>} />
+            <Route path="booking" element={<Booking />} />
+            <Route path="bookingform" element={<BookingForm />} />
             <Route path="reservation" element={<div>Reservation Component</div>} />
             
             {/* Inventory Routes */}
             <Route path="inventory" element={<div>Inventory Component</div>} />
             
             {/* Banquet Routes */}
-            <Route path="banquet/calendar" element={<div>Banquet Calendar</div>} />
+            <Route path="banquet/calendar" element={<LaganCalendar />} />
+            <Route path="banquet/add-booking" element={<AddBooking />} />
             <Route path="banquet/list-booking" element={<ListBooking />} />
             <Route path="banquet/menu-plan-manager" element={<div>Menu Plan Manager</div>} />
             

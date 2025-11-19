@@ -288,13 +288,8 @@ const Sidebar = () => {
     // Booking
     {
       icon: Book,
-      label: "Book",
+      label: "Booking",
       path: "/booking",
-      isDropdown: true,
-      children: [
-        { label: "Booking", path: "/booking", icon: FileText },
-        { label: "Reservation", path: "/reservation", icon: FileText },
-      ],
     },
     
     // Inventory

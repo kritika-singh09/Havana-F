@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, createContext, useContext, useMemo 
 import axios from 'axios';
 import { showToast } from '../../utils/toaster';
 import { validateEmail, validatePhone, validateRequired, validatePositiveNumber, validateDateRange, validateGST, validatePAN, validateAadhaar } from '../../utils/validation';
-
+ 
 // Apply golden theme
 const themeStyles = `
   :root {
