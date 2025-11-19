@@ -6,7 +6,7 @@ import Login from './pages/Login';
 import Dashboard from './components/Dashboard';
 import EasyDashboard from './components/easy dashboard/easydashboard';
 import RoomList from './components/room/RoomList';
-import RoomCategories from './components/room/RoomCategories';
+import CategoryList from './components/category/CategoryList';
 import RoomStatus from './components/room/RoomStatus';
 import Booking from './components/booking/Booking';
 import BookingForm from './components/booking/BookingForm';
@@ -36,7 +36,7 @@ function App() {
             
             {/* Room Management Routes */}
             <Route path="rooms" element={<RoomList />} />
-            <Route path="room-categories" element={<RoomCategories />} />
+            <Route path="room-categories" element={<CategoryList />} />
             <Route path="room-status" element={<RoomStatus />} />
             
             {/* Booking Routes */}

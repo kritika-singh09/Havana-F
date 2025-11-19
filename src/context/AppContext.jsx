@@ -18,12 +18,17 @@ export const AppProvider = ({ children }) => {
   const closeSidebar = () => setIsSidebarOpen(false);
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
+  // Configure axios with base URL
+  const axiosInstance = axios.create({
+    baseURL: import.meta.env.VITE_API_BASE_URL
+  });
+
   const value = {
     isSidebarOpen,
     openSidebar,
     closeSidebar,
     toggleSidebar,
-    axios
+    axios: axiosInstance
   };
 
   return (
